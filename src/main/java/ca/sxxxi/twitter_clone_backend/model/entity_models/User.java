@@ -1,4 +1,4 @@
-package ca.sxxxi.twitter_clone_backend.model;
+package ca.sxxxi.twitter_clone_backend.model.entity_models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

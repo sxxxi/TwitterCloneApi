@@ -1,6 +1,6 @@
 package ca.sxxxi.twitter_clone_backend.controller;
 
-import ca.sxxxi.twitter_clone_backend.entity.PostEntity;
+import ca.sxxxi.twitter_clone_backend.model.entity_models.Post;
 import ca.sxxxi.twitter_clone_backend.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +17,8 @@ import java.util.List;
 public class HomeController {
     private PostService postService;
 
-    @GetMapping("/greet")
-    public String greet() {
-        return "Hello there";
-    }
-
     @GetMapping({"/{userId}", "{userId}"})
-    public ResponseEntity<List<PostEntity>> getFeed(@PathVariable String userId) {
+    public ResponseEntity<List<Post>> getFeed(@PathVariable String userId) {
         return ResponseEntity.ok(postService.getFeed(userId));
     }
 }

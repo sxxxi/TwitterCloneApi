@@ -1,16 +1,17 @@
-package ca.sxxxi.twitter_clone_backend.model;
+package ca.sxxxi.twitter_clone_backend.model.form_objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PostCreate implements Serializable {
-    private String posterId;
+@NoArgsConstructor
+public class PostUpdateForm implements Serializable {
+    private UUID id;
     private String title;
     private String content;
 }

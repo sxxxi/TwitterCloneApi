@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface PostRepository extends JpaRepository<PostEntity, Long> {
+public interface PostRepository extends JpaRepository<PostEntity, UUID> {
     List<PostEntity> getPostsByAuthorId(String authorId);
-    Optional<PostEntity> getPostById(Long id);
+    Optional<PostEntity> getPostById(UUID id);
 
 }

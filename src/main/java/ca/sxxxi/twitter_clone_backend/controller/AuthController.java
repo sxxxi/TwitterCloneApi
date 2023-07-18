@@ -1,8 +1,8 @@
 package ca.sxxxi.twitter_clone_backend.controller;
 
 import ca.sxxxi.twitter_clone_backend.entity.UserEntity;
-import ca.sxxxi.twitter_clone_backend.model.LoginRequest;
-import ca.sxxxi.twitter_clone_backend.model.User;
+import ca.sxxxi.twitter_clone_backend.model.form_objects.LoginRequest;
+import ca.sxxxi.twitter_clone_backend.model.entity_models.User;
 import ca.sxxxi.twitter_clone_backend.service.AuthenticationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

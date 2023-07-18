@@ -1,7 +1,7 @@
 package ca.sxxxi.twitter_clone_backend.service;
 
 import ca.sxxxi.twitter_clone_backend.entity.UserEntity;
-import ca.sxxxi.twitter_clone_backend.model.User;
+import ca.sxxxi.twitter_clone_backend.model.entity_models.User;
 import ca.sxxxi.twitter_clone_backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
