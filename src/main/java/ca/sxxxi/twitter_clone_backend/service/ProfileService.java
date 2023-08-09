@@ -1,6 +1,7 @@
 package ca.sxxxi.twitter_clone_backend.service;
 import ca.sxxxi.twitter_clone_backend.entity.UserEntity;
 import ca.sxxxi.twitter_clone_backend.entity.UserFollowEntity;
+import ca.sxxxi.twitter_clone_backend.model.entity_models.User;
 import ca.sxxxi.twitter_clone_backend.repository.UserFollowsRepository;
 import ca.sxxxi.twitter_clone_backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -14,28 +15,35 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class ProfileService {
+    private JwtService jwtService;
     private UserRepository userRepo;
     private UserFollowsRepository userFollowRepo;
 //    private PostRepository postRepo;
 
-    public List<UserEntity> getUsersFollowedByUser(String followerId) {
+    public Optional<User> getUserById(String id) {
+        return userRepo.getUserById(id).map(UserEntity::toModel);
+    }
+
+    public List<User> getUsersFollowedByUser(String followerId) {
         Optional<UserEntity> follower = userRepo.getUserById(followerId);
         return follower
                 .map(user -> user
                         .getFollowing()
                         .stream()
                         .map(UserFollowEntity::getFollowee)
+                        .map(UserEntity::toModel)
                         .collect(Collectors.toList()))
                 .orElseGet(List::of);
     }
 
-    public List<UserEntity> getFollowersOfUser(String userId) {
+    public List<User> getFollowersOfUser(String userId) {
         Optional<UserEntity> follower = userRepo.getUserById(userId);
         return follower
                 .map(user -> user
                         .getFollowers()
                         .stream()
                         .map(UserFollowEntity::getFollower)
+                        .map(UserEntity::toModel)
                         .collect(Collectors.toList()))
                 .orElseGet(List::of);
     }

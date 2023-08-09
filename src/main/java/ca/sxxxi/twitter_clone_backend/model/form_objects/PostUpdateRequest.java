@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PostCreateForm implements Serializable {
-    private String posterId;
+@NoArgsConstructor
+public class PostUpdateRequest implements Serializable {
+    private UUID id;
     private String title;
     private String content;
 }

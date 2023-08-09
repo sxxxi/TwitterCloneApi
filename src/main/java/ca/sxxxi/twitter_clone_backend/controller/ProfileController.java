@@ -1,8 +1,10 @@
 package ca.sxxxi.twitter_clone_backend.controller;
 
 import ca.sxxxi.twitter_clone_backend.entity.UserEntity;
+import ca.sxxxi.twitter_clone_backend.model.entity_models.User;
 import ca.sxxxi.twitter_clone_backend.service.ProfileService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,12 +20,12 @@ public class ProfileController {
     private ProfileService profileService;
 
     @GetMapping("/{uid}")
-    public ResponseEntity<?> getProfileByUserId(@PathVariable String uid) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<User> getProfileByUserId(@PathVariable String uid) {
+        return profileService.getUserById(uid).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @GetMapping("/following/{followerId}")
-    public ResponseEntity<List<UserEntity>> getUserFollowed(@PathVariable String followerId) {
+    public ResponseEntity<List<User>> getUserFollowed(@PathVariable String followerId) {
         return ResponseEntity.ok(profileService.getUsersFollowedByUser(followerId));
     }
 

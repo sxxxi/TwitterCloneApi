@@ -9,7 +9,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest implements Serializable {
-    private String username;
-    private String password;
+public class PostCreateRequest implements Serializable {
+//    private String posterId;
+    private String title;
+    private String content;
 }

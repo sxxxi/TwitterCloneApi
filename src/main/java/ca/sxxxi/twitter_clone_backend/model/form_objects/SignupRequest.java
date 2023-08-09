@@ -7,9 +7,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class LoginRequest implements Serializable {
+@NoArgsConstructor
+public class SignupRequest implements Serializable {
     private String username;
     private String password;
+    private String pfp;
+    private String firstName;
+    private String lastName;
 }

@@ -21,7 +21,7 @@ public class Post implements Serializable {
     @NonNull
     private String content;
     @NonNull
-    private LocalDateTime dateCreated;
+    private Long dateCreated;
 
     @NonNull
     private User author;

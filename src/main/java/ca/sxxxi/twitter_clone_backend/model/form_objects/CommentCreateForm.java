@@ -11,6 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CommentCreateForm implements Serializable {
     private UUID postId;
+    private UUID recipientId;
     private String authorId;
     private String content;
 }

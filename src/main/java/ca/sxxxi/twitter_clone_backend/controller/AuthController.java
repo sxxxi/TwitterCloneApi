@@ -1,13 +1,16 @@
 package ca.sxxxi.twitter_clone_backend.controller;
 
 import ca.sxxxi.twitter_clone_backend.entity.UserEntity;
+import ca.sxxxi.twitter_clone_backend.model.form_objects.AuthenticationResponse;
 import ca.sxxxi.twitter_clone_backend.model.form_objects.LoginRequest;
 import ca.sxxxi.twitter_clone_backend.model.entity_models.User;
+import ca.sxxxi.twitter_clone_backend.model.form_objects.SignupRequest;
 import ca.sxxxi.twitter_clone_backend.service.AuthenticationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.UnexpectedException;
 import java.util.Optional;
 
 @RestController
@@ -16,20 +19,23 @@ import java.util.Optional;
 public class AuthController {
     private AuthenticationService authService;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserEntity user) {
+    @PostMapping("/signup")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody SignupRequest request) {
         try {
-           authService.createNewUser(user);
+            return ResponseEntity.ok(new AuthenticationResponse(authService.signup(request)));
         } catch (Exception e) {
-           return ResponseEntity.badRequest().build();
+            System.out.println(e.toString());
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest) {
-        Optional<User> u = authService.getUserById(loginRequest.getUsername());
-        return u.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            return ResponseEntity.ok(new AuthenticationResponse(authService.login(loginRequest)));
+        } catch (UnexpectedException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @DeleteMapping("/unregister")
