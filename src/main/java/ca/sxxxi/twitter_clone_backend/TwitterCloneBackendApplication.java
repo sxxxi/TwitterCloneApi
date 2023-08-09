@@ -51,7 +51,7 @@ public class TwitterCloneBackendApplication {
                 commentsService.postComment(trendy.getId(), top1reply1, sxxxi, "Bingbong!");
                 var top1reply2 = commentsService.postComment(trendy.getId(), top1, sxxxi, "Thanks for the Titter gold kind stranger! *tips fedora*");
                 commentsService.postComment(trendy.getId(), top1reply2, seajay, "What a kind peron!");
-                commentsService.postComment(trendy.getId(), top1reply2, sxxxi, "Schizo");
+                commentsService.postComment(trendy.getId(), top1reply2, sxxxi, "Thanks again");
             }
 
             profileService.followUser(sxxxi.getId(), seajay.getId());
